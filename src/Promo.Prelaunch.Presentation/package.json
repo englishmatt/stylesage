@@ -1,0 +1,14 @@
+{
+  "version": "0.1.0",
+  "name": "stylesage-prelaunchwebsite",
+  "private": true,
+  "dependencies": {
+    "normalize.css": "7.0.0"
+  },
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "gulp-sass": "3.1.0",
+    "gulp-sourcemaps": "2.6.0",
+    "del": "3.0.0"
+  }
+}

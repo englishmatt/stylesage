@@ -52,3 +52,7 @@ gulp.task("svg", function () {
 // General
 gulp.task("default", ["css", "scss", "svg"]);
 gulp.task("clean", ["clean:css", "clean:images"]);
+gulp.task("watch", function () {
+    gulp.watch(scssInput, ["scss"]);
+    gulp.watch(svgInput, ["svg"]);
+});

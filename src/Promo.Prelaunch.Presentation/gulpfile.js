@@ -1,13 +1,18 @@
-﻿/// <binding BeforeBuild='default' Clean='clean' ProjectOpened='default' />
+﻿"use strict";
+
+/// <binding BeforeBuild='default' Clean='clean' ProjectOpened='default' />
 var gulp = require("gulp"),
     sass = require("gulp-sass"),
     sourcemaps = require("gulp-sourcemaps"),
+    svgmin = require("gulp-svgmin"),
     del = require("del"),
 
     // Paths
     basePath = "./wwwroot/",
-    scssInput = basePath + "scss/**/*.scss";
-    cssOutput = basePath + "css";
+    scssInput = basePath + "scss/**/*.scss",
+    cssOutput = basePath + "css",
+    svgInput = basePath + "assets/**/*.svg",
+    imagesOutput = basePath + "images";
 
 // CSS
 gulp.task("css", function () {
@@ -31,6 +36,19 @@ gulp.task("scss", function () {
         .pipe(gulp.dest(cssOutput));
 });
 
+// Images
+gulp.task("clean:images", function () {
+    del(imagesOutput);
+});
+
+// SVG
+gulp.task("svg", function () {
+
+    return gulp.src(svgInput)
+        .pipe(svgmin())
+        .pipe(gulp.dest(imagesOutput));
+})
+
 // General
-gulp.task("default", ["css", "scss"]);
-gulp.task("clean", ["clean:css"]);
+gulp.task("default", ["css", "scss", "svg"]);
+gulp.task("clean", ["clean:css", "clean:images"]);

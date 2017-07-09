@@ -1,30 +1,38 @@
-﻿<header role="banner">
+﻿<header class="primary-header" role="banner">
 
-    <h1><img class="lockout" alt="Stylesage" src="~/images/lockout.svg" /></h1>
+    <div>
+        <h1><img class="lockout" alt="Stylesage" src="~/images/lockout.svg" /></h1>
 
-    <nav>
-        <ul>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">About</a></li>
-        </ul>
-    </nav>
+        <nav class="primary-navigation">
+            <ul>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </div>
 
 </header>
 
 <main role="main">
-    <p class="product-description">CSS regression testing, coverage, and optimization as a service.</p>
+    <div class="hero">
+        <div>
+            <h2 class="product-description">CSS regression testing, coverage, and optimization as a service.</h2>
 
-    <h2>Sign Up for a Notification</h2>
-    <p>Stylesage is currently under heavy development. Please sign up below to be notified when it’s ready.</p>
+            <section class="notification-sign-up">
+                <h2>Sign Up for a Notification</h2>
+                <p>Stylesage is currently under heavy development. Please sign up below to be notified when it’s ready.</p>
 
-    <form action="/" method="post">
-        <input type="email" maxlength="200" />
-        <button type="submit">Notify me!</button>
-    </form>
+                <form action="/" method="post">
+                    <input type="email" class="wide streamlined" id="notification-email-address" maxlength="200" required="required" placeholder="Your email address" />
+                    <button type="submit">Notify me!</button>
+                </form>
 
-    <p>You'll receive two emails: one to confirm your address, and one when Stylesage is ready.</p>
+                <small>You'll receive two emails: one to confirm your address, and one when Stylesage is ready.</small>
+            </section>
+        </div>
+    </div>
 
-    <section>
+    <section class="product-overview">
         <h2>Overview</h2>
 
         <p>
@@ -41,6 +49,8 @@
     </section>
 </main>
 
-<footer role="contentinfo">
-    <p><small>An service provided by Stylesage.</small></p>
+<footer class="primary-footer" role="contentinfo">
+    <div>
+        <small>A service provided by the General Partnership of Matt Creighton and Matt Titchener.</small>
+    </div>
 </footer>

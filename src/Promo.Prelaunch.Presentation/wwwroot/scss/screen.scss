@@ -1,1 +1,244 @@
-﻿// Nothing here yet.
+﻿@import "fonts";
+
+// Color names
+$dusk-blue: #1c223a;
+$midnight-blue: #131830;
+$daylight-blue: #4b97ff;
+$dawn-blue: #242a41;
+$morning-blue: #b6b9cb;
+$mid-gray: #5a5a5a;
+$smoke-gray: #3a3a3a;
+
+// Color assignments
+$highlight: $daylight-blue;
+$secondary-background-color: $midnight-blue;
+$primary-background-color: $dusk-blue;
+$light-on-dark-copy-color: #fff;
+$dark-on-light-copy-color: $smoke-gray;
+$navigation-item-color: #fff;
+$hover-color: $daylight-blue;
+$horizontal-rule-color: $dawn-blue;
+$button-copy-color: #fff;
+$button-background-color: $daylight-blue;
+$placeholder-color: $mid-gray;
+$tertiary-background-color: $dawn-blue;
+
+// Layout variables
+$large-content-horizontal-padding: 5rem;
+$form-field-border-radius: 3px;
+
+// Typography
+$copy-font: 400 18px/1.5 "Montserrat", "Proxima Nova", "Avenir", "Helvetica", "Arial", sans-serif;
+
+// Mixins
+@mixin visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+body,
+input,
+select,
+textarea,
+button {
+    font: $copy-font;
+    line-height: 1.6;
+}
+
+input,
+select,
+textarea,
+button {
+    border: 0;
+    border-radius: $form-field-border-radius;
+    color: $dark-on-light-copy-color;
+    font-size: 1rem;
+    padding: 0.5rem 0.9rem;
+
+    &.wide {
+        width: 26rem;
+    }
+}
+
+input,
+select,
+textarea {
+    font-weight: 300;
+}
+
+button {
+    background-color: $button-background-color;
+    color: $button-copy-color;
+    cursor: pointer;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+small {
+    font-size: 0.8125rem;
+}
+
+form {
+    font-size: 0;   // Removes the gap between the `input` and `button` when a `.streamlined` layout is used.
+}
+
+// We have to separate the selectors for each browser, otherwise the declaration block is not applied ¯\_(ツ)_/¯
+:-ms-input-placeholder {        // IE
+    color: $placeholder-color;
+}
+
+::-ms-input-placeholder {       // Edge
+    color: $placeholder-color;
+}
+
+::-webkit-input-placeholder {   // Chrome
+    color: $placeholder-color;
+}
+
+::placeholder {
+    color: $placeholder-color;
+}
+
+.streamlined {
+    border-radius: $form-field-border-radius 0 0 $form-field-border-radius;
+
+    + button {
+        border-radius: 0 $form-field-border-radius $form-field-border-radius 0;
+    }
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    // A little ashamed to have to use font-smoothing, but Monserrat does not render nicely against a darker background
+    // without it. Could possibly be removed if we change typeface.
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    background-color: $primary-background-color;
+    color: $light-on-dark-copy-color;
+    display: flex;
+    flex-direction: column;
+
+    > header {
+        background-color: $secondary-background-color;
+        border-top: 9px solid $highlight;
+        padding-top: 3.5rem;
+
+        h1 {
+            display: inline-block;
+            margin: 0;
+        }
+    }
+
+    > header > div,
+    main > section,
+    .hero > div,
+    > footer > div {
+        margin: 0 auto;
+        max-width: 60rem;
+        padding: 0 $large-content-horizontal-padding;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    > footer {
+        background-color: $tertiary-background-color;
+    }
+}
+
+.primary-navigation {
+    float: right;
+
+    a:link {
+        color: $light-on-dark-copy-color;
+    }
+
+    // [1]: Remove the space between `li`s
+    ul {
+        font-size: 0;       // [1]
+        list-style: none;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0;
+    }
+
+    a {
+        display: block;
+        font-size: 1rem;    // [1]
+        padding: 1.45rem 1rem;
+        position: relative;
+
+        &:link,
+        &:visited {
+            color: $navigation-item-color;
+        }
+
+        &:hover {
+            color: $hover-color;
+
+            &:after {
+                $diameter: 6px;
+                background-color: $hover-color;
+                border-radius: 50%;
+                bottom: -1rem;
+                content: "";
+                height: $diameter;
+                left: calc(50% - (#{$diameter} / 2));
+                position: absolute;
+                width: $diameter;
+            }
+        }
+    }
+}
+
+.hero {
+    background-color: $secondary-background-color;
+    font-size: 1.1875rem;
+    padding-bottom: 4rem;
+
+    p {
+        width: 32rem;
+    }
+
+    > div {
+        border-top: 2px solid $horizontal-rule-color;
+    }
+}
+
+small {
+    color: transparentize($light-on-dark-copy-color, 0.5);
+}
+
+.notification-sign-up,
+.product-overview {
+
+    h2 {
+        @include visually-hidden;
+    }
+}

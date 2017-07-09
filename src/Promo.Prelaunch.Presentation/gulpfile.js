@@ -42,12 +42,16 @@ gulp.task("clean:images", function () {
 });
 
 // SVG
-gulp.task("svg", function () {
+gulp.task("svg", ["clean:svg"], function () {
 
     return gulp.src(svgInput)
         .pipe(svgmin())
         .pipe(gulp.dest(imagesOutput));
 })
+
+gulp.task("clean:svg", function () {
+    del(imagesOutput + "/**/*.svg");
+});
 
 // General
 gulp.task("default", ["css", "scss", "svg"]);

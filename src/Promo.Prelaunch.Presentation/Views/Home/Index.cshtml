@@ -16,14 +16,19 @@
 <main role="main">
     <div class="hero">
         <div>
-            <h2 class="product-description">CSS regression testing, coverage, and optimization as a service.</h2>
+            <h2 class="product-description">
+                CSS diffing, regression testing, coverage, and optimization as a service.
+            </h2>
 
             <section class="notification-sign-up">
                 <h2>Sign Up for a Notification</h2>
-                <p>Stylesage is currently under heavy development. Please sign up below to be notified when it’s ready.</p>
+                <p>
+                    Stylesage is currently under heavy development. Please sign up below to be notified when it’s ready.
+                </p>
 
                 <form action="/" method="post">
-                    <input type="email" class="wide streamlined" id="notification-email-address" maxlength="200" required="required" placeholder="Your email address" />
+                    <input type="email" class="wide streamlined" id="notification-email-address" maxlength="200"
+                        required="required" placeholder="Your email address" />
                     <button type="submit">Notify me!</button>
                 </form>
 
@@ -35,17 +40,25 @@
     <section class="product-overview">
         <h2>Overview</h2>
 
-        <p>
-            Visually compare changes to your look and feel against your existing site; be confident you haven’t introduced
-            unexpected modifications to any page.
+        <p class="css-diff-feature">
+            Visually compare changes to your look and feel against your existing site; be confident you haven’t
+            introduced unexpected modifications to any page.
         </p>
 
-        <p>
-            Identify and remove unnecessary styles across your entire site, using Stylesage CSS coverage tools custom web
-            crawler.
+        @* We use <object> as it is universally supported, and allows for interaction *and* easy fallback to non-SVG
+           images *@
+        <object class="css-diff-diagram" type="image/svg+xml" data="images/css-diff-diagram.svg">
+            @* TODO: fallback image goes here *@
+        </object>
+
+        <p class="css-coverage-feature">
+            Identify and remove unnecessary styles across your entire site, using Stylesage CSS coverage tools custom
+            web crawler.
         </p>
 
-        <p>Work seamlessly in the browser with Stylesage cross-browser developer plugins. Work offline when necessary.</p>
+        <p class="css-developer-plugin-feature">
+            Work seamlessly in the browser with Stylesage cross-browser developer plugins. Work offline when necessary.
+        </p>
     </section>
 </main>
 

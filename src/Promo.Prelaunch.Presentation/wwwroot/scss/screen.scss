@@ -170,6 +170,10 @@ body {
     }
 }
 
+small {
+    color: transparentize($light-on-dark-copy-color, 0.5);
+}
+
 .primary-navigation {
     float: right;
 
@@ -231,14 +235,20 @@ body {
     }
 }
 
-small {
-    color: transparentize($light-on-dark-copy-color, 0.5);
-}
-
 .notification-sign-up,
 .product-overview {
 
     h2 {
         @include visually-hidden;
     }
+}
+
+.css-diff-diagram {
+    float: right;
+    margin-top: -5rem;
+}
+
+.css-diff-feature {
+    display: inline-block;
+    width: 33rem;
 }

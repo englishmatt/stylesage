@@ -40,29 +40,43 @@
     <section class="product-overview">
         <h2>Overview</h2>
 
-        <p class="css-diff-feature">
-            Visually compare changes to your look and feel against your existing site; be confident you haven’t
-            introduced unexpected modifications to any page.
-        </p>
+        <section>
+            <h3>CSS Diffing</h3>
+            <p class="css-diff-feature">
+                Visually compare changes to your look and feel against your existing site; be confident you haven’t
+                introduced unexpected modifications to any page.
+            </p>
 
-        @* We use <object> as it is universally supported, and allows for interaction *and* easy fallback to non-SVG
-           images *@
-        <object class="css-diff-diagram" type="image/svg+xml" data="images/css-diff-diagram.svg">
-            @* TODO: Fallback image goes here *@
-        </object>
+            @* We use <object> as it is universally supported, and allows for interaction *and* easy fallback to non-SVG
+            images *@
+            <object class="css-diff-diagram" type="image/svg+xml" data="images/css-diff-diagram.svg">
+                @* TODO: Fallback image goes here *@
+            </object>
+        </section>
 
-        <object class="css-coverage-diagram" type="image/svg+xml" data="images/css-coverage-diagram.svg">
-            @* TODO: Fallback image goes here *@
-        </object>
+        <section>
+            <h3>CSS Coverage</h3>
+            <object class="css-coverage-diagram" type="image/svg+xml" data="images/css-coverage-diagram.svg">
+                @* TODO: Fallback image goes here *@
+            </object>
 
-        <p class="css-coverage-feature">
-            Identify and remove unnecessary styles across your entire site, using Stylesage CSS coverage tools custom
-            web crawler.
-        </p>
+            <p class="css-coverage-feature">
+                Identify and remove unnecessary styles across your entire site, using Stylesage CSS coverage tools custom
+                web crawler.
+            </p>
+        </section>
 
-        <p class="css-developer-plugin-feature">
-            Work seamlessly in the browser with Stylesage cross-browser developer plugins. Work offline when necessary.
-        </p>
+        <section>
+            <h3>Developer Plugins</h3>
+            <p class="css-developer-plugin-feature">
+                Work seamlessly in the browser with Stylesage cross-browser developer plugins. Work offline when necessary.
+            </p>
+
+            <object class="css-developer-plugin-diagram" type="image/svg+xml"
+                data="images/css-developer-plugin-diagram.svg">
+                @* TODO: Fallback image goes here *@
+            </object>
+        </section>
     </section>
 </main>
 

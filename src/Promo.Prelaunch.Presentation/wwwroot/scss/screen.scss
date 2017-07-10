@@ -243,22 +243,30 @@ small {
     }
 }
 
-.css-diff-diagram {
+.product-overview {
+
+    > section {
+        clear: both;
+    }
+
+    h3 {
+        @include visually-hidden;
+    }
+}
+
+.css-diff-diagram,
+.css-developer-plugin-diagram {
     float: right;
     margin-top: -5rem;
 }
 
-.css-diff-feature {
+.css-diff-feature,
+.css-developer-plugin-feature {
     display: inline-block;
     width: 33rem;
 }
 
 .css-coverage-diagram {
     float: left;
-    margin-top: 5rem;
     margin-right: 7rem;
-}
-
-.css-coverage-feature {
-    margin-top: 5rem;
 }

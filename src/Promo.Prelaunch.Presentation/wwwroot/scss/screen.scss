@@ -22,10 +22,12 @@ $button-copy-color: #fff;
 $button-background-color: $daylight-blue;
 $placeholder-color: $mid-gray;
 $tertiary-background-color: $dawn-blue;
+$notification-small-print-color: transparentize($daylight-blue, 0.5);
 
 // Layout variables
 $large-content-horizontal-padding: 5rem;
 $form-field-border-radius: 3px;
+$horizontal-rule-width: 2px;
 
 // Typography
 $copy-font: 400 18px/1.5 "Montserrat", "Proxima Nova", "Avenir", "Helvetica", "Arial", sans-serif;
@@ -107,11 +109,8 @@ h2 {
 }
 
 small {
+    color: transparentize($light-on-dark-copy-color, 0.7);
     font-size: 0.8125rem;
-}
-
-form {
-    font-size: 0;   // Removes the gap between the `input` and `button` when a `.streamlined` layout is used.
 }
 
 // We have to separate the selectors for each browser, otherwise the declaration block is not applied ¯\_(ツ)_/¯
@@ -171,7 +170,15 @@ body {
     > footer > div {
         margin: 0 auto;
         max-width: 60rem;
-        padding: 0.7rem $large-content-horizontal-padding;
+        padding: {
+            left: $large-content-horizontal-padding;
+            right: $large-content-horizontal-padding;
+        }
+    }
+
+    > header > div {
+        @include clear-fix;
+        border-bottom: $horizontal-rule-width solid $horizontal-rule-color;
     }
 
     main {
@@ -180,15 +187,25 @@ body {
 
     > footer {
         background-color: $tertiary-background-color;
+
+        > div {
+            padding: {
+                bottom: 0.5rem;
+                top: 0.5rem;
+            }
+        }
     }
 }
 
-small {
-    color: transparentize($light-on-dark-copy-color, 0.5);
+.lockout {
+    left: -3.9rem;
+    position: relative;
 }
 
 .primary-navigation {
     float: right;
+    left: 3.3rem;
+    position: relative;
 
     a:link {
         color: $light-on-dark-copy-color;
@@ -206,9 +223,12 @@ small {
     }
 
     a {
+        $selected-item-border-width: 5px;
+        border-bottom: $selected-item-border-width solid transparent;
         display: block;
         font-size: 1rem;    // [1]
-        padding: 1.45rem 1rem;
+        margin-bottom: -$horizontal-rule-width;
+        padding: 1.45rem 1.5rem 2.45rem;
         position: relative;
 
         &:link,
@@ -218,18 +238,7 @@ small {
 
         &:hover {
             color: $hover-color;
-
-            &:after {
-                $diameter: 6px;
-                background-color: $hover-color;
-                border-radius: 50%;
-                bottom: -1rem;
-                content: "";
-                height: $diameter;
-                left: calc(50% - (#{$diameter} / 2));
-                position: absolute;
-                width: $diameter;
-            }
+            border-bottom: $selected-item-border-width solid $daylight-blue;
         }
     }
 }
@@ -237,14 +246,12 @@ small {
 .hero {
     background-color: $secondary-background-color;
     font-size: 1.1875rem;
+    overflow: auto;
     padding-bottom: 4rem;
+    padding-top: 1.2rem;
 
     p {
         width: 32rem;
-    }
-
-    > div {
-        border-top: 2px solid $horizontal-rule-color;
     }
 }
 
@@ -253,6 +260,14 @@ small {
 
     h2 {
         @include visually-hidden;
+    }
+}
+
+.notification-sign-up {
+
+    form {
+        font-size: 0;   // Removes the gap between the `input` and `button` when a `.streamlined` layout is used.
+        margin-bottom: 0.5rem;
     }
 }
 

@@ -28,6 +28,7 @@ $notification-small-print-color: transparentize($daylight-blue, 0.5);
 $large-content-horizontal-padding: 5rem;
 $form-field-border-radius: 3px;
 $horizontal-rule-width: 2px;
+$header-bottom-spacing: 2.45rem;
 
 // Typography
 $copy-font: 400 18px/1.5 "Montserrat", "Proxima Nova", "Avenir", "Helvetica", "Arial", sans-serif;
@@ -159,7 +160,6 @@ body {
         padding-top: 3.5rem;
 
         h1 {
-            display: inline-block;
             margin: 0;
         }
     }
@@ -177,8 +177,10 @@ body {
     }
 
     > header > div {
-        @include clear-fix;
+        align-items: flex-end;
         border-bottom: $horizontal-rule-width solid $horizontal-rule-color;
+        display: flex;
+        justify-content: space-between;
     }
 
     main {
@@ -199,11 +201,12 @@ body {
 
 .lockout {
     left: -3.9rem;
+    padding-bottom: $header-bottom-spacing;
     position: relative;
+    vertical-align: bottom;
 }
 
 .primary-navigation {
-    float: right;
     left: 3.3rem;
     position: relative;
 
@@ -228,7 +231,7 @@ body {
         display: block;
         font-size: 1rem;    // [1]
         margin-bottom: -$horizontal-rule-width;
-        padding: 1.45rem 1.5rem 2.45rem;
+        padding: 1.45rem 1.5rem $header-bottom-spacing;
         position: relative;
 
         &:link,

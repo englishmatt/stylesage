@@ -25,10 +25,19 @@ $tertiary-background-color: $dawn-blue;
 $notification-small-print-color: transparentize($daylight-blue, 0.5);
 
 // Layout variables
-$large-content-horizontal-padding: 5rem;
+$large-content-horizontal-padding: 5.5rem;
+$medium-content-horizontal-padding: 3rem;
 $form-field-border-radius: 3px;
 $horizontal-rule-width: 2px;
 $header-bottom-spacing: 2.45rem;
+
+// Media query variables
+$media-query-transition-duration: 300ms;
+$lockout-resize-width: 1200px;
+$lockout-remove-hang-width: 780px;
+$page-reduce-padding-width: 780px;
+$copy-reduce-size-width: 780px;
+$feature-diagram-reduce-size-width: 1000px;
 
 // Typography
 $copy-font: 400 18px/1.5 "Montserrat", "Proxima Nova", "Avenir", "Helvetica", "Arial", sans-serif;
@@ -81,10 +90,6 @@ button {
     color: $dark-on-light-copy-color;
     font-size: 1rem;
     padding: 0.5rem 0.9rem;
-
-    &.wide {
-        width: 26rem;
-    }
 }
 
 input,
@@ -111,6 +116,7 @@ h2 {
 
 small {
     color: transparentize($light-on-dark-copy-color, 0.7);
+    display: block;
     font-size: 0.8125rem;
 }
 
@@ -174,6 +180,15 @@ body {
             left: $large-content-horizontal-padding;
             right: $large-content-horizontal-padding;
         }
+        transition: padding $media-query-transition-duration;
+
+        @media (max-width: $page-reduce-padding-width) {
+
+            padding: {
+                left: $medium-content-horizontal-padding;
+                right: $medium-content-horizontal-padding;
+            }
+        }
     }
 
     > header > div {
@@ -203,12 +218,23 @@ body {
     left: -3.9rem;
     padding-bottom: $header-bottom-spacing;
     position: relative;
+    transition: left $media-query-transition-duration;
     vertical-align: bottom;
+    width: 100%;
+
+    @media (max-width: $lockout-resize-width) {
+        left: -3rem;
+    }
+
+    @media (max-width: $lockout-remove-hang-width) {
+        left: 0;
+    }
 }
 
 .primary-navigation {
     left: 3.3rem;
     position: relative;
+    transition: left $media-query-transition-duration;
 
     a:link {
         color: $light-on-dark-copy-color;
@@ -218,6 +244,7 @@ body {
     ul {
         font-size: 0;       // [1]
         list-style: none;
+        padding: 0;
     }
 
     li {
@@ -244,6 +271,10 @@ body {
             border-bottom: $selected-item-border-width solid $daylight-blue;
         }
     }
+
+    @media (max-width: $page-reduce-padding-width) {
+        left: 0;
+    }
 }
 
 .hero {
@@ -254,7 +285,7 @@ body {
     padding-top: 1.2rem;
 
     p {
-        width: 32rem;
+        max-width: 32rem;
     }
 }
 
@@ -269,12 +300,23 @@ body {
 .notification-sign-up {
 
     form {
+        display: flex;
         font-size: 0;   // Removes the gap between the `input` and `button` when a `.streamlined` layout is used.
         margin-bottom: 0.5rem;
+        max-width: 36rem;
+    }
+
+    .streamlined {
+        flex: 1;
+
+        + button {
+            flex: none;
+        }
     }
 }
 
 .product-overview {
+    position: relative;
 
     > section {
         @include clear-fix;
@@ -283,6 +325,10 @@ body {
 
     h3 {
         @include visually-hidden;
+    }
+
+    @media (max-width: $copy-reduce-size-width) {
+        font-size: 0.97rem;
     }
 }
 

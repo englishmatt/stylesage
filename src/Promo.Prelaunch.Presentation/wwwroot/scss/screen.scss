@@ -34,7 +34,6 @@ $header-bottom-spacing: 2.45rem;
 
 // Media query variables
 $media-query-transition-duration: 300ms;
-$lockout-resize-width: 1200px;
 $lockout-remove-hang-width: 780px;
 $page-first-reduce-padding-width: 780px;
 $page-second-reduce-padding-width: 545px;
@@ -43,6 +42,7 @@ $copy-second-reduce-size-width: 545px;
 $feature-diagram-reduce-size-width: 1000px;
 $feature-diagram-modifiy-placement-width: 780px;
 $feature-copy-increase-white-space-width: 1000px;
+$primary-navigation-collapse-width: 600px;
 
 // Typography
 $copy-font: 400 18px/1.5 "Montserrat", "Proxima Nova", "Avenir", "Helvetica", "Arial", sans-serif;
@@ -169,16 +169,6 @@ body {
     display: flex;
     flex-direction: column;
 
-    > header {
-        background-color: $secondary-background-color;
-        border-top: 9px solid $highlight;
-        padding-top: 3.5rem;
-
-        h1 {
-            margin: 0;
-        }
-    }
-
     > header > div,
     main > section,
     .hero > div,
@@ -190,6 +180,11 @@ body {
             right: $large-content-horizontal-padding;
         }
         transition: padding $media-query-transition-duration;
+    }
+
+    main > section,
+    .hero > div,
+    > footer > div {
 
         @media (max-width: $page-first-reduce-padding-width) {
 
@@ -208,11 +203,44 @@ body {
         }
     }
 
-    > header > div {
-        align-items: flex-end;
-        border-bottom: $horizontal-rule-width solid $horizontal-rule-color;
-        display: flex;
-        justify-content: space-between;
+    > header {
+        background-color: $secondary-background-color;
+        border-top: 9px solid $highlight;
+        padding-top: 3.5rem;
+
+        h1 {
+            margin: 0;
+            transition: margin-left $media-query-transition-duration;
+        }
+
+        > div {
+            align-items: flex-end;
+            border-bottom: $horizontal-rule-width solid $horizontal-rule-color;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        @media (max-width: $page-first-reduce-padding-width) {
+
+            h1 {
+                margin-left: $medium-content-horizontal-padding;
+            }
+
+            > div {
+                padding: {
+                    left: 0;
+                    right: 0;
+                }
+            }
+        }
+
+        @media (max-width: $page-second-reduce-padding-width) {
+
+            h1 {
+                margin-left: $small-content-horizontal-padding;
+            }
+        }
     }
 
     main {
@@ -241,11 +269,6 @@ body {
     position: relative;
     transition: left $media-query-transition-duration;
     vertical-align: bottom;
-    width: 100%;
-
-    @media (max-width: $lockout-resize-width) {
-        left: -3rem;
-    }
 
     @media (max-width: $lockout-remove-hang-width) {
         left: 0;
@@ -265,6 +288,7 @@ body {
     ul {
         font-size: 0;       // [1]
         list-style: none;
+        overflow: hidden;
         padding: 0;
     }
 
@@ -281,6 +305,7 @@ body {
         margin-bottom: -$horizontal-rule-width;
         padding: 1.45rem 1.5rem $header-bottom-spacing;
         position: relative;
+        transition: padding $media-query-transition-duration;
 
         &:link,
         &:visited {
@@ -289,12 +314,36 @@ body {
 
         &:hover {
             color: $hover-color;
-            border-bottom: $selected-item-border-width solid $daylight-blue;
+
+            @media (min-width: $primary-navigation-collapse-width) {
+                border-bottom: $selected-item-border-width solid $daylight-blue;
+            }
         }
     }
 
     @media (max-width: $page-first-reduce-padding-width) {
+        left: -3rem;
+    }
+
+    @media (max-width: $primary-navigation-collapse-width) {
+        border-top: $horizontal-rule-width solid $horizontal-rule-color;
         left: 0;
+        width: 100%;
+
+        li {
+            display: block;
+        }
+
+        a {
+            padding: 0.5rem $medium-content-horizontal-padding;
+        }
+    }
+
+    @media (max-width: $page-second-reduce-padding-width) {
+
+        a {
+            padding: 0.5rem $small-content-horizontal-padding;
+        }
     }
 }
 

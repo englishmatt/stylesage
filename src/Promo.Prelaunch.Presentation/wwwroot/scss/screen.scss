@@ -27,6 +27,7 @@ $notification-small-print-color: transparentize($daylight-blue, 0.5);
 // Layout variables
 $large-content-horizontal-padding: 5.5rem;
 $medium-content-horizontal-padding: 3rem;
+$small-content-horizontal-padding: 2rem;
 $form-field-border-radius: 3px;
 $horizontal-rule-width: 2px;
 $header-bottom-spacing: 2.45rem;
@@ -35,9 +36,13 @@ $header-bottom-spacing: 2.45rem;
 $media-query-transition-duration: 300ms;
 $lockout-resize-width: 1200px;
 $lockout-remove-hang-width: 780px;
-$page-reduce-padding-width: 780px;
-$copy-reduce-size-width: 780px;
+$page-first-reduce-padding-width: 780px;
+$page-second-reduce-padding-width: 545px;
+$copy-first-reduce-size-width: 780px;
+$copy-second-reduce-size-width: 545px;
 $feature-diagram-reduce-size-width: 1000px;
+$feature-diagram-modifiy-placement-width: 780px;
+$feature-copy-increase-white-space-width: 1000px;
 
 // Typography
 $copy-font: 400 18px/1.5 "Montserrat", "Proxima Nova", "Avenir", "Helvetica", "Arial", sans-serif;
@@ -120,6 +125,10 @@ small {
     font-size: 0.8125rem;
 }
 
+p:first-of-type {
+    margin-top: 0;
+}
+
 // We have to separate the selectors for each browser, otherwise the declaration block is not applied ¯\_(ツ)_/¯
 :-ms-input-placeholder {        // IE
     color: $placeholder-color;
@@ -182,11 +191,19 @@ body {
         }
         transition: padding $media-query-transition-duration;
 
-        @media (max-width: $page-reduce-padding-width) {
+        @media (max-width: $page-first-reduce-padding-width) {
 
             padding: {
                 left: $medium-content-horizontal-padding;
                 right: $medium-content-horizontal-padding;
+            }
+        }
+
+        @media (max-width: $page-second-reduce-padding-width) {
+
+            padding: {
+                left: $small-content-horizontal-padding;
+                right: $small-content-horizontal-padding;
             }
         }
     }
@@ -211,6 +228,10 @@ body {
                 top: 0.5rem;
             }
         }
+    }
+
+    @media (max-width: $page-first-reduce-padding-width) {
+        overflow-x: hidden;
     }
 }
 
@@ -272,7 +293,7 @@ body {
         }
     }
 
-    @media (max-width: $page-reduce-padding-width) {
+    @media (max-width: $page-first-reduce-padding-width) {
         left: 0;
     }
 }
@@ -319,41 +340,76 @@ body {
     position: relative;
 
     > section {
-        @include clear-fix;
+        display: flex;
+        justify-content: space-between;
         margin: 3.3rem 0;
+        transition: margin $media-query-transition-duration,
+                    padding-left $media-query-transition-duration;
     }
 
     h3 {
         @include visually-hidden;
     }
 
-    @media (max-width: $copy-reduce-size-width) {
+    @media (max-width: $copy-first-reduce-size-width) {
         font-size: 0.97rem;
+    }
+
+    @media (max-width: $copy-second-reduce-size-width) {
+        font-size: 0.87rem;
+    }
+
+    object {
+        height: 100%;
     }
 }
 
 .css-diff-diagram {
-    float: right;
     margin-top: -8rem;
-    position: relative;
-    right: 5rem;
 }
 
-.css-developer-plugin-diagram {
-    float: right;
-    margin-top: -4rem;
-}
+.css-diff-diagram,
+.css-coverage-diagram {
+    width: 15rem;
+    transition: width $media-query-transition-duration,
+                margin-top $media-query-transition-duration;
 
-.css-diff-feature,
-.css-developer-plugin-feature {
-
-    p {
-        display: inline-block;
-        width: 34rem;
+    @media (max-width: $feature-diagram-reduce-size-width) {
+        margin-top: 0;
+        width: 25%;
     }
 }
 
-.css-coverage-diagram {
-    float: left;
-    margin-right: 7rem;
+.css-diff-feature,
+.css-coverage-feature {
+
+    p {
+        width: 63%;
+
+        @media (max-width: $feature-diagram-reduce-size-width) {
+            width: 69%;
+        }
+    }
+}
+
+.css-developer-plugin-diagram {
+    width: 23rem;
+    transition: width $media-query-transition-duration,
+                margin-top $media-query-transition-duration;
+
+    @media (max-width: $feature-diagram-reduce-size-width) {
+        margin-top: 0;
+        width: 32%;
+    }
+}
+
+.css-developer-plugin-feature {
+
+    p {
+        width: 53%;
+
+        @media (max-width: $feature-diagram-reduce-size-width) {
+            width: 61%;
+        }
+    }
 }

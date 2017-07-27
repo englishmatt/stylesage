@@ -16,6 +16,8 @@ $primary-background-color: $dusk-blue;
 $light-on-dark-copy-color: #fff;
 $dark-on-light-copy-color: $smoke-gray;
 $navigation-item-color: #fff;
+$navigation-mobile-background-color: $dawn-blue;
+$navigation-mobile-hover-color: $daylight-blue;
 $hover-color: $daylight-blue;
 $horizontal-rule-color: $dawn-blue;
 $button-copy-color: #fff;
@@ -35,6 +37,7 @@ $header-bottom-spacing: 2.45rem;
 // Media query variables
 $media-query-transition-duration: 300ms;
 $lockout-remove-hang-width: 780px;
+$lockout-shrink-width: 600px;
 $page-first-reduce-padding-width: 780px;
 $page-second-reduce-padding-width: 545px;
 $copy-first-reduce-size-width: 780px;
@@ -207,6 +210,7 @@ body {
         background-color: $secondary-background-color;
         border-top: 9px solid $highlight;
         padding-top: 3.5rem;
+        transition: padding $media-query-transition-duration;
 
         h1 {
             margin: 0;
@@ -233,6 +237,10 @@ body {
                     right: 0;
                 }
             }
+        }
+
+        @media (max-width: $lockout-shrink-width) {
+            padding-top: 2rem;
         }
 
         @media (max-width: $page-second-reduce-padding-width) {
@@ -267,18 +275,22 @@ body {
     left: -3.9rem;
     padding-bottom: $header-bottom-spacing;
     position: relative;
-    transition: left $media-query-transition-duration;
+    transition: left $media-query-transition-duration,
+                width $media-query-transition-duration;
     vertical-align: bottom;
 
     @media (max-width: $lockout-remove-hang-width) {
         left: 0;
+    }
+
+    @media (max-width: $lockout-shrink-width) {
+        width: 12rem;
     }
 }
 
 .primary-navigation {
     left: 3.3rem;
     position: relative;
-    transition: left $media-query-transition-duration;
 
     a:link {
         color: $light-on-dark-copy-color;
@@ -305,7 +317,7 @@ body {
         margin-bottom: -$horizontal-rule-width;
         padding: 1.45rem 1.5rem $header-bottom-spacing;
         position: relative;
-        transition: padding $media-query-transition-duration;
+        transition: padding-left $media-query-transition-duration;
 
         &:link,
         &:visited {
@@ -326,23 +338,62 @@ body {
     }
 
     @media (max-width: $primary-navigation-collapse-width) {
-        border-top: $horizontal-rule-width solid $horizontal-rule-color;
         left: 0;
         width: 100%;
 
+        ul {
+            background-color: $navigation-mobile-background-color;
+            border-top: 0;
+            max-height: 0;
+            transition: max-height $media-query-transition-duration;
+        }
+
         li {
             display: block;
+
+            &:first-child {
+
+                a {
+                    padding-top: 1rem;
+                }
+            }
+
+            &:last-child {
+
+                a {
+                    margin-bottom: -$horizontal-rule-width;
+                    padding-bottom: 1rem;
+                }
+            }
         }
 
         a {
+            margin-bottom: 0;
             padding: 0.5rem $medium-content-horizontal-padding;
+
+            &:hover {
+                background-color: $navigation-mobile-hover-color;
+                color: #fff;
+            }
+        }
+
+        // Used to support a progressively enhanced, responsive primary navigation
+        .no-js &,
+        .js &.open {
+
+            ul {
+                max-height: 200px;
+            }
         }
     }
 
     @media (max-width: $page-second-reduce-padding-width) {
 
         a {
-            padding: 0.5rem $small-content-horizontal-padding;
+            padding: {
+                left: $small-content-horizontal-padding;
+                right: $small-content-horizontal-padding;
+            }
         }
     }
 }
